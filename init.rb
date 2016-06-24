@@ -159,10 +159,10 @@ Redmine::Plugin.register :redmine_backlogs do
       User.current.allowed_to?({:controller => :rb_all_projects, :action => :statistics}, nil, :global => true) &&
       (Backlogs.setting[:scrum_stats_menu_position].nil? || Backlogs.setting[:scrum_stats_menu_position] == 'top')
     }
-  menu :application_menu, :rb_statistics, { :controller => :rb_all_projects, :action => :statistics}, :caption => :label_scrum_statistics,
-    :if => Proc.new { 
-      Backlogs.configured? &&
-      User.current.allowed_to?({:controller => :rb_all_projects, :action => :statistics}, nil, :global => true) &&
-      Backlogs.setting[:scrum_stats_menu_position] == 'application'
-    }
+  # menu :application_menu, :rb_statistics, { :controller => :rb_all_projects, :action => :statistics}, :caption => :label_scrum_statistics,
+  #   :if => Proc.new { 
+  #     Backlogs.configured? &&
+  #     User.current.allowed_to?({:controller => :rb_all_projects, :action => :statistics}, nil, :global => true) &&
+  #     Backlogs.setting[:scrum_stats_menu_position] == 'application'
+  #   }
 end
