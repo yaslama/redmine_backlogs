@@ -7,7 +7,7 @@
 
 <%- unless Backlogs.setting[:story_points].blank? -%>
 <select class="story_points helper" id="story_points_options">
-	<%- (['']+Backlogs.setting[:story_points].split(/,/).collect(&:to_f)).each do |point| %>
+	<%- (['']+Backlogs.setting[:story_points].split(/,/).collect(&:to_s)).each do |point| %>
 	<option value="<%=h point %>"><%=h point %></option>
 	<%- end %>
 </select>

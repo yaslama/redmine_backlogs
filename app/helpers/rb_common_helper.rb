@@ -79,7 +79,7 @@ filter:progid:DXImageTransform.Microsoft.Gradient(Enabled=1,GradientType=0,Start
   end
 
   def story_points_or_empty(story)
-    story.story_points.blank? ? "" : story.story_points
+    story.story_points.blank? ? "" : ("%g" % story.story_points)
   end
 
   def record_id_or_empty(story)
@@ -148,7 +148,9 @@ filter:progid:DXImageTransform.Microsoft.Gradient(Enabled=1,GradientType=0,Start
     return '' if story.new_record?
     res = ''
     story.custom_field_values.each{|value|
-      res += "<p><b>#{h(value.custom_field.name)}</b>: #{simple_format_without_paragraph(h(show_value(value)))}</p>"
+      if value.value.present?
+        res += "<p class=\"issue-field\"><label>#{h(value.custom_field.name)}:</label> #{simple_format_without_paragraph(h(show_value(value)))}</p>"
+      end
     }
     res.html_safe
   end

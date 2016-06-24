@@ -35,10 +35,10 @@
         :key    => key }) %>"><%= l(:label_webcal) %></a><br>
   <% end %>
 
-<% releases = project.shared_releases
+<% releases = project.shared_releases.open
   if releases && releases.size > 0 && User.current.allowed_to?(:view_releases, project) %>
     <h3><%= l(:label_release_plural) %></h3>
-    <% project.shared_releases.each{|r| %>
+    <% releases.each{|r| %>
       <%= link_to(r, {
         :controller => 'rb_queries',
         :action => 'show',

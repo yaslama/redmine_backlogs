@@ -1,14 +1,29 @@
-<b><%= I18n.t :field_subject %></b>: <%=h tooltip.subject %><br />
-<b><%= I18n.t :field_tracker_id %></b>: <%=h tooltip.tracker %><br />
-<b><%= I18n.t :story_status %></b>: <%=h status_label_or_default(tooltip) %><br />
-<b><%= I18n.t :field_category %></b>: <%=h tooltip.category %><br />
-<b><%= I18n.t :story_points %></b>: <%=h story_points_or_empty(tooltip) %><br />
-<b><%= I18n.t :story_estimation_hours %></b>: <%=h tooltip.estimated_hours %><br />
-<b><%= I18n.t :story_spent_time %></b>: <%= tooltip.total_spent_hours.round(2) %><br />
-<b><%= I18n.t :story_remaining_hours %></b>: <%=h remaining_hours_or_empty(tooltip) %><br />
-<b><%= I18n.t :field_assigned_to %></b>: <%=h assignee_name_or_empty(tooltip) %><br />
-<b><%= I18n.t :field_project %></b>: <%=h project_name_or_empty(tooltip) %><br />
-<b><%= I18n.t :field_release %></b>: <%=h release_or_empty(tooltip) %><br />
-<div><%= textilizable tooltip, :description, :attachments => tooltip.attachments%></div>
-
+<p class="issue-field"><label><%= I18n.t :field_subject %>:</label> <%=h tooltip.subject %></p>
+<p class="issue-field"><label><%= I18n.t :field_tracker_id %>:</label> <%=h tooltip.tracker %></p>
+<p class="issue-field"><label><%= I18n.t :story_status %>:</label> <%=h status_label_or_default(tooltip) %></p>
+<% unless tooltip.category.blank? %>
+    <p class="issue-field"><label><%= I18n.t :field_category %>:</label> <%=h tooltip.category %></p>
+<% end %>
+<% unless tooltip.story_points.blank? %>
+    <p class="issue-field"><label><%= I18n.t :story_points %>:</label> <%=h story_points_or_empty(tooltip) %></p>
+<% end %>
+<% unless tooltip.estimated_hours.blank? %>
+    <p class="issue-field"><label><%= I18n.t :story_estimation_hours %>:</label> <%=h tooltip.estimated_hours %></p>
+<% end %>
+<% unless tooltip.total_spent_hours.blank? %>
+    <p class="issue-field"><label><%= I18n.t :story_spent_time %>:</label> <%= tooltip.total_spent_hours.round(2) %></p>
+<% end %>
+<% unless tooltip.remaining_hours.blank? %>
+    <p class="issue-field"><label><%= I18n.t :story_remaining_hours %>:</label> <%=h remaining_hours_or_empty(tooltip) %></p>
+<% end %>
+<% unless tooltip.assigned_to.blank? %>
+    <p class="issue-field"><label><%= I18n.t :field_assigned_to %>:</label> <%=h assignee_name_or_empty(tooltip) %></p>
+<% end %>
+<p class="issue-field"><label><%= I18n.t :field_project %>:</label> <%=h project_name_or_empty(tooltip) %></p>
+<% unless tooltip.release_id.blank? %>
+    <p class="issue-field"><label><%= I18n.t :field_release %>:</label> <%=h release_or_empty(tooltip) %></p>
+<% end %>
 <%=h custom_fields_or_empty(tooltip) %>
+<% unless tooltip.description.blank? %>
+    <div class="issue-description"><%= textilizable tooltip, :description, :attachments => tooltip.attachments %></div>
+<% end %>
