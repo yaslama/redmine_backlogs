@@ -229,7 +229,7 @@ module Backlogs
       end
 
       def active_sprint
-        time = (Time.zone ? Time.zone : Time).now
+        time = Time.now
         @active_sprint ||= RbSprint.where("project_id = ? and status = 'open' and not (sprint_start_date is null or effective_date is null) and ? >= sprint_start_date and ? <= effective_date",
           self.id, time.end_of_day, time.beginning_of_day
         ).take
