@@ -80,6 +80,7 @@ RB.ajax = function(options){
   }
 
   RB.ajaxQueue.push(options);
+  RB.ajaxOngoing = false;
   if(!RB.ajaxOngoing){ RB.processAjaxQueue(); }
 };
 
