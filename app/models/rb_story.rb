@@ -48,7 +48,7 @@ class RbStory < Issue
 
   def self.__find_options_pbl_condition(project_id)
     ["
-      issues.project_id in (#{Project.find(project_id).projects_in_shared_product_backlog.map{|p| p.id}.join(',')})
+      issues.project_id in (#{Project.find(project_id).projects_in_shared_product_backlog(Project.find(project_id).status==5 ? true : false).map{|p| p.id}.join(',')})
       and tracker_id in (?)
       and release_id is NULL
       and fixed_version_id is NULL
