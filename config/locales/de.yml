@@ -71,6 +71,7 @@ de:
   backlogs_story_tracker: "Story Tracker"
   backlogs_task: Aufgabe
   backlogs_task_tracker: "Aufgaben Tracker"
+  backlogs_default_task_tracker: "Standard Task tracker"
   backlogs_wiki_template: "Vorlage für das Sprint-Wiki"
   button_edit_wiki: "Wiki Seite bearbeiten"
   comma_delimited_numbers: "Mittels Komma getrennte Zahlenwerte"

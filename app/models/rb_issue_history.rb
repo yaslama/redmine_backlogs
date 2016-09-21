@@ -92,7 +92,7 @@ class RbIssueHistory < ActiveRecord::Base
     return nil if tracker_id.blank?
     if RbStory.trackers_include?(tracker_id)
       :story
-    elsif RbTask.tracker?(tracker_id)
+    elsif RbTask.trackers_include?(tracker_id)
       :task
     else
       nil

@@ -53,7 +53,7 @@ module Backlogs
         @available_filters = available_filters_without_backlogs_issue_type
         return @available_filters if !show_backlogs_issue_items?(project)
 
-        if RbStory.trackers.length == 0 or RbTask.tracker.blank?
+        if RbStory.trackers.length == 0 or RbTask.trackers.blank?
           backlogs_filters = { }
         else
           backlogs_filters = {

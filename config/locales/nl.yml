@@ -70,7 +70,8 @@ nl:
   backlogs_story_settings: "Story and Task settings"
   backlogs_story_tracker: "Story trackers"
   backlogs_task: Taak
-  backlogs_task_tracker: "Taak tracker"
+  backlogs_task_tracker: "Taak trackers"
+  backlogs_default_task_tracker: "Default taak tracker"
   backlogs_wiki_template: "Template voor sprint wiki pagina"
   button_edit_wiki: "Wijzig wiki page"
   comma_delimited_numbers: "Komma-gescheiden getallen"

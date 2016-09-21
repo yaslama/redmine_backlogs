@@ -10,8 +10,8 @@ class RbTaskboardsController < RbApplicationController
     @settings = Backlogs.settings
 
     ## determine status columns to show
-    tracker = Tracker.find_by_id(RbTask.tracker)
-    statuses = tracker.issue_statuses
+    trackers = (RbTask.trackers - RbStory.trackers).map{|s| Tracker.find_by_id(s)}
+    statuses = trackers.map{|s| s.issue_statuses}.flatten!.uniq
     # disable columns by default
     if User.current.admin?
       @statuses = statuses
@@ -29,7 +29,7 @@ class RbTaskboardsController < RbApplicationController
         [false, true].each {|creator|
           [false, true].each {|assignee|
 
-            allowed = status.new_statuses_allowed_to(roles, tracker, creator, assignee).collect{|s| s.id}
+            allowed = status.new_statuses_allowed_to(roles, trackers, creator, assignee).collect{|s| s.id}
             #@transitions["c#{creator ? 'y' : 'n'}a#{assignee ? 'y' : 'n'}"] = allowed
             allowed.each{|s| enabled[s] = true}
           }
@@ -41,7 +41,7 @@ class RbTaskboardsController < RbApplicationController
     if @sprint.stories.size == 0
       @last_updated = nil
     else
-      @last_updated = RbTask.where(tracker_id: RbTask.tracker, fixed_version_id: @sprint.stories[0].fixed_version_id)
+      @last_updated = RbTask.where(tracker_id: RbTask.trackers, fixed_version_id: @sprint.stories[0].fixed_version_id)
                             .order("updated_on DESC").first
     end
 

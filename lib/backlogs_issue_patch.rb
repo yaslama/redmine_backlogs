@@ -45,7 +45,7 @@ module Backlogs
       end
 
       def is_task?
-        RbTask.tracker?(tracker_id)
+        RbTask.trackers_include?(tracker_id)
       end
 
       def backlogs_issue_type
@@ -117,7 +117,7 @@ module Backlogs
             self.fixed_version = self.story.fixed_version if self.story
             self.start_date = Date.today if self.start_date.blank? && self.status_id != self.tracker.default_status.id
 
-            self.tracker = Tracker.find(RbTask.tracker) unless self.tracker_id == RbTask.tracker
+            self.tracker = Tracker.find(Backlogs.setting[:default_task_tracker]) unless RbTask.trackers_include?(self.tracker_id)
           elsif self.is_story? && Backlogs.setting[:set_start_and_duedates_from_sprint]
             if self.fixed_version
               self.start_date ||= (self.fixed_version.sprint_start_date || Date.today)
@@ -175,16 +175,16 @@ module Backlogs
                                             or
                                             (not ? is NULL and not fixed_version_id is NULL and ?<>fixed_version_id)
                                             or
-                                            (tracker_id <> ?)
+                                            (tracker_id NOT IN (?))
                                           )", self.root_id, self.lft, self.rgt,
                                               self.fixed_version_id, self.fixed_version_id,
                                               self.fixed_version_id, self.fixed_version_id,
-                                              RbTask.tracker).all.to_a
+                                              RbTask.trackers).all.to_a
           tasklist.each{|task| task.history.save! }
           if tasklist.size > 0
             task_ids = '(' + tasklist.collect{|task| self.class.connection.quote(task.id)}.join(',') + ')'
             self.class.connection.execute("update issues set
-                                updated_on = #{self.class.connection.quote(self.updated_on)}, fixed_version_id = #{self.class.connection.quote(self.fixed_version_id)}, tracker_id = #{RbTask.tracker}
+                                updated_on = #{self.class.connection.quote(self.updated_on)}, fixed_version_id = #{self.class.connection.quote(self.fixed_version_id)}
                                 where id in #{task_ids}")
           end
         end

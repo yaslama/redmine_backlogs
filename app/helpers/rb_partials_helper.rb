@@ -30,7 +30,7 @@ module RbPartialsHelper
   def render_rb_task_collection(tasks)
     capture do
       tasks.each do |task|
-        concat render_rb_task(task)
+        concat render_rb_task(task) unless RbStory.trackers_include?(task.tracker_id)
       end
     end
   end
