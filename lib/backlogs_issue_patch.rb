@@ -184,7 +184,7 @@ module Backlogs
           if tasklist.size > 0
             task_ids = '(' + tasklist.collect{|task| self.class.connection.quote(task.id)}.join(',') + ')'
             self.class.connection.execute("update issues set
-                                updated_on = #{self.class.connection.quote(self.updated_on)}, fixed_version_id = #{self.class.connection.quote(self.fixed_version_id)}
+                                updated_on = #{self.class.connection.quote(self.updated_on)} 
                                 where id in #{task_ids}")
           end
         end

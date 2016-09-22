@@ -29,9 +29,12 @@ class RbTaskboardsController < RbApplicationController
         [false, true].each {|creator|
           [false, true].each {|assignee|
 
-            allowed = status.new_statuses_allowed_to(roles, trackers, creator, assignee).collect{|s| s.id}
+            allowed = []
+            trackers.each {|tracker|
+              allowed = allowed + status.new_statuses_allowed_to(roles, tracker, creator, assignee).collect{|s| s.id}
+            }
             #@transitions["c#{creator ? 'y' : 'n'}a#{assignee ? 'y' : 'n'}"] = allowed
-            allowed.each{|s| enabled[s] = true}
+            allowed.uniq.each{|s| enabled[s] = true}
           }
         }
       }
