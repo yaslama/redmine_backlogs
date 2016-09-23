@@ -496,9 +496,15 @@ module BacklogsPrintableCards
 
       data = {}
       if issue.is_task?
-        data['story.position'] = issue.story.position ? issue.story.position : l(:label_not_prioritized)
-        data['story.id'] = issue.story.id
-        data['story.subject'] = issue.story.subject
+        if issue.story.present?
+          data['story.position'] = issue.story.position ? issue.story.position : l(:label_not_prioritized)
+          data['story.id'] = issue.story.id
+          data['story.subject'] = issue.story.subject
+        else
+          data['story.position'] = l(:label_not_prioritized)
+          data['story.id'] = "0"
+          data['story.subject'] = ""
+        end
 
         data['id'] = issue.id
         data['subject'] = issue.subject.to_s.strip
