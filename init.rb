@@ -68,7 +68,8 @@ Redmine::Plugin.register :redmine_backlogs do
                          :show_project_name         => nil,
                          :scrum_stats_menu_position => 'top',
                          :show_redmine_std_header   => 'enabled',
-                         :show_priority             => nil
+                         :show_priority             => nil,
+                         :task_story_on_taskboard   => nil
                        },
            :partial => 'backlogs/settings'
 

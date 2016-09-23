@@ -30,7 +30,7 @@ module RbPartialsHelper
   def render_rb_task_collection(tasks)
     capture do
       tasks.each do |task|
-        concat render_rb_task(task) unless RbStory.trackers_include?(task.tracker_id)
+        concat render_rb_task(task) unless (RbStory.trackers_include?(task.tracker_id) and Backlogs.setting[:show_task_story_on_taskboard]!='enabled')
       end
     end
   end

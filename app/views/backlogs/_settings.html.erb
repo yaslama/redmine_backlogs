@@ -114,6 +114,11 @@
 </p>
 
 <p>
+  <%= content_tag(:label, l(:backlogs_show_task_story_on_taskboard)) %>
+  <%= check_box_tag("settings[show_task_story_on_taskboard]",'enabled',Backlogs.setting[:show_task_story_on_taskboard]) %>
+</p>
+
+<p>
   <%= content_tag(:label, l(:backlogs_wiki_template)) %>
   <%= text_field_tag("settings[wiki_template]", Backlogs.setting[:wiki_template]) %>
 </p>

@@ -72,6 +72,7 @@ nl:
   backlogs_task: Taak
   backlogs_task_tracker: "Taak trackers"
   backlogs_default_task_tracker: "Default taak tracker"
+  backlogs_show_task_story_on_taskboard: "Op het taakbord, toon taken die ook story items zijn"
   backlogs_wiki_template: "Template voor sprint wiki pagina"
   button_edit_wiki: "Wijzig wiki page"
   comma_delimited_numbers: "Komma-gescheiden getallen"
