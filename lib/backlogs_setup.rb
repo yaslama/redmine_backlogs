@@ -123,21 +123,23 @@ module Backlogs
   module_function :gems
 
   def trackers
-    return {:task => !!Tracker.find_by_id(RbTask.trackers), :story => !RbStory.trackers.empty?, :default_priority => !IssuePriority.default.nil?}
+    return {:task => !RbTask.trackers.empty?, :story => !RbStory.trackers.empty?, :default_priority => !IssuePriority.default.nil?}
   end
   module_function :trackers
 
   def task_workflow(project)
-    return false unless RbTask.tracker
+    return false unless RbTask.trackers
 
     roles = User.current.roles_for_project(@project)
-    tracker = Tracker.find(RbTask.tracker)
+    trackers = RbTask.trackers
 
     [false, true].each{|creator|
       [false, true].each{|assignee|
-        tracker.issue_statuses.each {|status|
-          status.new_statuses_allowed_to(roles, tracker, creator, assignee).each{|s|
-            return true
+        trackers.each {|tracker|
+          tracker.issue_statuses.each {|status|
+            status.new_statuses_allowed_to(roles, tracker, creator, assignee).each{|s|
+              return true
+            }
           }
         }
       }

@@ -104,7 +104,7 @@ module Backlogs
         selected_values = ['story', 'task'] if selected_values.include?('any')
 
         story_trackers = RbStory.trackers(:type=>:string)
-        all_trackers = (RbStory.trackers + [RbTask.tracker]).collect{|val| "#{val}"}.join(",")
+        all_trackers = (RbStory.trackers + RbTask.trackers).collect{|val| "#{val}"}.join(",")
 
         selected_values.each { |val|
           case val
@@ -112,7 +112,7 @@ module Backlogs
               sql << "(#{db_table}.tracker_id in (#{story_trackers}))"
 
             when "task"
-              sql << "(#{db_table}.tracker_id = #{RbTask.tracker})"
+              sql << "(#{db_table}.tracker_id in (#{RbTask.trackers}))"
 
             when "impediment"
               sql << "(#{db_table}.id in (
