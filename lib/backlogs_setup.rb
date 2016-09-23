@@ -131,7 +131,7 @@ module Backlogs
     return false unless RbTask.trackers
 
     roles = User.current.roles_for_project(@project)
-    trackers = RbTask.trackers
+    trackers = RbTask.trackers.map{|s| Tracker.find_by_id(s)}
 
     [false, true].each{|creator|
       [false, true].each{|assignee|
