@@ -6,7 +6,7 @@
     roles_projs = User.current.projects_by_role
     roles_projs.each_pair{|k,v| v.each{|p| projs.add(p)}}
     Rails.logger.info "in my project"
-    trackers = RbTask.trackers
+    trackers = RbTask.trackers.map{|s| Tracker.find_by_id(s)}
     statuses = []
     trackers.each {|tracker|
       statuses = statuses + tracker.issue_statuses
