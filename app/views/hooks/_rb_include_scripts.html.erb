@@ -36,3 +36,7 @@
                          :action => 'index', :format => 'js') %>">
 </script>
 <%= javascript_include_tag 'burndown.js', :plugin => 'redmine_backlogs' %>
+<%# variable for sprint length %>
+<script type="text/javascript">
+RB.sprint_length = <%= ( Backlogs.setting[:sprint_length].to_i > 0 ) ? (Backlogs.setting[:sprint_length]) : (14) %>;
+</script>

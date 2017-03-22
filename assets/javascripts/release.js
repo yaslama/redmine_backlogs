@@ -24,7 +24,7 @@ RB.Release = RB.Object.create(RB.Sprint, {
     end = editor.find('.end_date.editor');
     if (end.val()=='no end') {
       now = new Date();
-      now.setDate(now.getDate() + 14);
+      now.setDate(now.getDate() + RB.sprint_length);
       now = RB.$.datepicker.formatDate('yy-mm-dd', now);
       end.val(now);
     }

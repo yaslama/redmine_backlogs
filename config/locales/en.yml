@@ -74,6 +74,7 @@ en:
   backlogs_default_task_tracker: "Default task tracker"
   backlogs_show_task_story_on_taskboard: "On taskboard, show tasks that are also story items"
   backlogs_wiki_template: "Template for sprint wiki page"
+  backlogs_sprint_length: "Sprint length (in days)"
   button_edit_wiki: "Edit wiki page"
   comma_delimited_numbers: "Comma delimited numbers"
   current_open_story_points: "Current open story points:"

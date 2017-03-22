@@ -73,7 +73,7 @@ RB.Sprint = RB.Object.create(RB.Model, RB.EditableInplace, {
     end = editor.find('.effective_date.editor');
     if (end.val()=='no end') {
       now = new Date();
-      now.setDate(now.getDate() + 14);
+      now.setDate(now.getDate() + RB.sprint_length);
       now = RB.$.datepicker.formatDate('yy-mm-dd', now);
       end.val(now);
     }
