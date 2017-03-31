@@ -9,7 +9,7 @@ class RbQueriesController < RbApplicationController
     if params[:sprint_id]
       @query.add_filter("status_id", '*', ['']) # All statuses
       @query.add_filter("fixed_version_id", '=', [params[:sprint_id]])
-      @query.add_filter("backlogs_issue_type", '=', ['any'])
+      @query.add_filter("backlogs_issue_type", '=', 'any')
     elsif params[:release_id]
       @query.add_filter("status_id", '*', ['']) # All status
       @query.add_filter("release_id", '=', [params[:release_id]])
