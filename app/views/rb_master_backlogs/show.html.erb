@@ -33,6 +33,9 @@
     :plugin => 'redmine_backlogs') %>
   <%= stylesheet_link_tag 'jquery/jquery.qtip.css', :plugin => 'redmine_backlogs' %>
   <%= stylesheet_link_tag 'jquery/jquery.multiselect.css', :plugin => 'redmine_backlogs' %>
+  <% if Backlogs.setting[:show_tags] == 'enabled' %>
+  <%= stylesheet_link_tag 'tags.css', :plugin => 'redmine_backlogs' %>
+  <% end %>
   <%= stylesheet_link_tag 'master_backlog.css', :plugin => 'redmine_backlogs', :media => 'print,screen' %>
   <%= stylesheet_link_tag 'master_backlog_print.css', :plugin => 'redmine_backlogs', :media => 'print' %>
   <script type="text/javascript">RB.$(document).ready(function() { RB.$("#livefilter_controll").focus(); });</script>

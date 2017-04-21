@@ -2,6 +2,11 @@
  <div class="fff-wrapmiddle">
    <div class="story_field fff-middle">
      <span class="editable subject" fieldname="subject" fieldlabel="<%=l(:field_subject)%>" fieldtype="textarea"><%=h story.subject %></span>
+    <% if Backlogs.setting[:show_tags] == 'enabled' && defined? story.tags %>
+    <% story.tags.each do |t| %>
+    <span class="tag-label"><%= t.name %></span>
+    <% end %>
+    <% end %>
   </div>
  </div>
  <div class="fff-left">

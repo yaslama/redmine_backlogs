@@ -300,6 +300,11 @@
   <%= check_box_tag("settings[show_project_name]",'enabled',
             Backlogs.setting[:show_project_name]) %>
 </p>
+<p>
+  <%= content_tag(:label, l(:rb_show_tags)) %>
+  <%= check_box_tag("settings[show_tags]",'enabled',
+            Backlogs.setting[:show_tags]) %>
+</p>
 </fieldset>
 
 <fieldset>

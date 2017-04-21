@@ -1,0 +1,7 @@
+.backlogs-panel .tag-label {
+    float: right;
+    margin-right: 3px;
+    padding: 1px 8px;
+    background-color: #bbb;
+    border-radius: 3px;
+}
