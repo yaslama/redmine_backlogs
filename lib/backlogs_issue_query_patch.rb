@@ -66,6 +66,11 @@ module Backlogs
                                 :name => l(:field_story_points),
                                 :order => 22 }
                              }
+          @available_filters = add_available_filter('backlogs_issue_type', {
+            :type => :list,
+            :name => l(:field_backlogs_issue_type),
+            :values => [[l(:backlogs_story), "story"], [l(:backlogs_task), "task"], [l(:backlogs_impediment), "impediment"], [l(:backlogs_any), "any"]]})
+          @available_filters = add_available_filter('story_point', { :type => :float, :name => l(:field_story_points)})
         end
 
         if project
@@ -75,8 +80,12 @@ module Backlogs
             :values => RbRelease.where(project_id: project).order('name ASC').collect { |d| [d.name, d.id.to_s]},
             :order => 21
           }
+          @available_filters = add_available_filter('release_id', {
+            :type => :list_optional,
+            :name => l(:field_release),
+            :values => RbRelease.where(project_id: project).order('name ASC').collect { |d| [d.name, d.id.to_s]}})
         end
-        @available_filters = @available_filters.merge(backlogs_filters)
+        @available_filters
       end
       
       def available_columns_with_backlogs_issue_type
